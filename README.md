@@ -23,8 +23,8 @@
 
 ## 주차 별 계획
 
-| --- | --- |
 | **1주차** | Neural Network란? |
+| --- | --- |
 | **2주차** | MLP(Multi Layer Perceptron) |
 | **3주차** | Learning Algorithm |
 | **4주차** | Error Back Propagation |
