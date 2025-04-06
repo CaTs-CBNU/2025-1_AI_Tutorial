@@ -1,1 +1,35 @@
+뉴런끼리 연결되는 부분-> 시냅스
+사람의 뉴런에서 셀 바디에 해당하는 부분-> 인공지능 ai의 부위로 따지면 퍼셉트론의 f에 해당하는 부분
+사람의 뉴런 구조에서는 양이온을 시냅스 부분에서 받아내다가 받아들일 수 있는 한계치에 도달하면 방출시키는데 그것을 모방함. 인공지능은 한계치 전까지는 0으로 유지하다가 한계치에 도달하면 1을 도출함.
+연결강도에 따라서 정보량을 많이 흘려 보낼지 적게 흘려 보낼지를 결정할 수 있음(connection weight)
+x와 w의 값을 곱하여 더한 값을 y에 저장함.
+바이어스 ->의미 있는 값을 출력해주기 위해서 임의로 입력해주는 값(엔드 연산을 할때 선형적으로 분리해주는 역할을 함)
+멀티 레이어 퍼셉트론 -> 퍼셉트론들을 겹쳐서 만든 것으로 비선형적으로 값이 나오는 것들도 구분할 수 있도록 해주는 역할을 함
+그 후 파이썬을 통해 직접 엔드 연산을 수행하는 퍼셉트론을 만들어보았음.
+import torch
+import torch.nn as nn
+def step (x ):
+  return torch.where(x >= 0 , 1 , 0 )
+class Perceptron (nn .Module ):
+  def __init__(self , weights , bias ):
+   super().__init__()
+   self .weights = torch.tensor(weights, dtype=torch.float )
+   self .bias = torch.tensor(bias, dtype=torch.float )
+  def forward (self , x ):
+   z = torch.matmul(x, self .weights) + self .bias
+   return step(z)
+inputs = torch.tensor([
+   [0.0 , 0.0 ],
+   [0.0 , 1.0 ],
+   [1.0 , 0.0 ],
+   [1.0 , 1.0 ]
+])
+print ("* AND 퍼셉트론 결과")
+and_perceptron = Perceptron(weights=[1.0 , 1.0 ], bias = -1.5 )
+for x in inputs:
+  x = x.float ()
+  out = and_perceptron(x.float ())
+  print (f "입력: {x.tolist()} -> 출력: {int (out.item())}")
+print ()
 
+여기에서 퍼셉트론을 추가하여 비선형적인 것들을 구현할 수 있고, 다른 연산의 결과가 필요하다면 가중치를 조절하여 결과를 달리할 수 있음.
