@@ -6,4 +6,4 @@
 4. use "git commit -m "message"
 5. use "git push origin main"
 
-if you read this file, erase this comments and use git bash for now!
+if you read this file, erase this comments and use git bash from now!
